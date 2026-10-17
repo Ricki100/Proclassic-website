@@ -1,0 +1,16 @@
+# OS / editor
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+# Node (if a build step is added later)
+node_modules/
+# Local working files
+*.psd
+*.ai
+*.aep
+_to_delete/
+_originals/
