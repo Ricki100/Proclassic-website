@@ -140,8 +140,8 @@
   });
 
 
-  /* QUOTE FORM: Web3Forms (email record) -> generate_lead -> WhatsApp with the full request.
-     Same pattern as the Kredibility application form. */
+  /* LEAD FORMS ([data-lead-form]): Web3Forms (email record) -> generate_lead -> WhatsApp with the request.
+     Same pattern as the Kredibility application form. Used by the main #quote form and the sticky quick-quote bar. */
   var qf = document.getElementById('quote-form');
   document.querySelectorAll('[data-quote-category]').forEach(function (a) {
     a.addEventListener('click', function () {
@@ -149,6 +149,14 @@
       if (r) r.checked = true;
     });
   });
+  /* Links from other pages (e.g. the 404 page) can pre-select a tyre type on the homepage form */
+  document.querySelectorAll('[data-quote-link]').forEach(function (a) {
+    a.addEventListener('click', function () { try { sessionStorage.setItem('pc_quote_cat', a.getAttribute('data-quote-link')); } catch (x) {} });
+  });
+  try {
+    var pre = sessionStorage.getItem('pc_quote_cat');
+    if (pre && qf) { var pr = qf.querySelector('input[name="tyre-category"][value="' + pre + '"]'); if (pr) pr.checked = true; sessionStorage.removeItem('pc_quote_cat'); }
+  } catch (x) {}
   document.querySelectorAll('[data-phone]').forEach(function (input) {
     input.addEventListener('input', function () {
       var d = this.value.replace(/\D/g, '');
@@ -158,45 +166,45 @@
       this.value = d ? '+263 ' + d.slice(0, 2) + (d.length > 2 ? ' ' + d.slice(2, 5) : '') + (d.length > 5 ? ' ' + d.slice(5) : '') : '';
     });
   });
-  if (qf) {
-    var btn = qf.querySelector('[data-submit-button]'), btnHtml = btn.innerHTML, st = qf.querySelector('[data-form-status]');
-    var consent = document.getElementById('consent-checkbox'), stamp = document.getElementById('consent-recorded');
+  var LABELS = [['tyre-category', 'Tyres'], ['tyre-size', 'Size'], ['quantity', 'Quantity'], ['vehicle', 'Vehicle / machine'], ['branch', 'Branch'], ['', ''], ['name', 'Name'], ['company', 'Company'], ['phone', 'WhatsApp']];
+  document.querySelectorAll('form[data-lead-form]').forEach(function (form) {
+    var kind = form.getAttribute('data-lead-form');
+    var btn = form.querySelector('[data-submit-button]'), btnHtml = btn.innerHTML, st = form.querySelector('[data-form-status]');
+    var consent = form.querySelector('[name="data-consent"]'), stamp = form.querySelector('[name="consent-recorded"]'), page = form.querySelector('[name="page"]');
     var started = false;
-    qf.addEventListener('focusin', function () { if (!started && window.gtag) { started = true; gtag('event', 'form_start', { form_name: 'quote' }); } });
-    function val(n, f) { var e = qf.elements.namedItem(n); var v = e && typeof e.value === 'string' ? e.value.trim() : ''; return v || f || 'Not provided'; }
+    function val(n) { var el = form.elements.namedItem(n); return el && typeof el.value === 'string' ? el.value.trim() : ''; }
     function setSt(m, t) { st.textContent = m; if (t) st.setAttribute('data-type', t); else st.removeAttribute('data-type'); }
     function waText() {
-      return ['PROCLASSIC TYRE QUOTE REQUEST', '',
-        'Tyres: ' + val('tyre-category'),
-        'Size: ' + val('tyre-size', 'Not sure'),
-        'Quantity: ' + val('quantity'),
-        'Vehicle / machine: ' + val('vehicle'),
-        'Branch: ' + val('branch'), '',
-        'Name: ' + val('name'),
-        'Company: ' + val('company'),
-        'WhatsApp: ' + val('phone'), '',
-        'Please confirm stock and price. Thank you.'].join('\n');
+      var out = ['PROCLASSIC TYRE QUOTE REQUEST', ''];
+      LABELS.forEach(function (l) {
+        if (!l[0]) { out.push(''); return; }
+        if (!form.elements.namedItem(l[0])) return;
+        out.push(l[1] + ': ' + (val(l[0]) || (l[0] === 'tyre-size' ? 'Not sure' : 'Not provided')));
+      });
+      out.push('', 'Please confirm stock and price. Thank you.');
+      return out.join('\n');
     }
-    qf.addEventListener('input', function () { if (st.getAttribute('data-type') === 'error' && qf.checkValidity()) setSt(''); });
-    qf.addEventListener('change', function () { if (st.getAttribute('data-type') === 'error' && qf.checkValidity()) setSt(''); });
-    qf.addEventListener('submit', async function (e) {
+    form.addEventListener('focusin', function () { if (!started && window.gtag) { started = true; gtag('event', 'form_start', { form_name: kind }); } });
+    function clearErr() { if (st.getAttribute('data-type') === 'error' && form.checkValidity()) setSt(''); }
+    form.addEventListener('input', clearErr); form.addEventListener('change', clearErr);
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      qf.classList.add('was-validated');
-      if (!qf.checkValidity()) {
-        var bad = qf.querySelector(':invalid'); if (bad) bad.focus();
+      form.classList.add('was-validated');
+      if (!form.checkValidity()) {
+        var bad = form.querySelector(':invalid'); if (bad) bad.focus();
         setSt('Please complete the highlighted fields.', 'error'); return;
       }
-      if (consent && consent.checked) stamp.value = 'Quote contact consent given at ' + new Date().toISOString();
-      document.getElementById('quote-page').value = location.href;
-      btn.disabled = true; btn.textContent = 'Sending request…'; setSt('Saving your request before opening WhatsApp…');
-      var key = (qf.elements.namedItem('access_key') || {}).value || '';
+      if (consent && consent.checked && stamp) stamp.value = 'Quote contact consent given at ' + new Date().toISOString();
+      if (page) page.value = location.href;
+      btn.disabled = true; btn.textContent = 'Sending…'; setSt('Saving your request before opening WhatsApp…');
+      var key = val('access_key');
       try {
         if (key && key.indexOf('YOUR_') !== 0) {
-          var res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(qf) });
+          var res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
           var out = await res.json();
           if (!res.ok || !out.success) throw new Error(out.message || 'Submission failed');
-        } else { console.warn('Web3Forms key not set: request goes to WhatsApp only.'); }
-        try { if (window.gtag) gtag('event', 'generate_lead', { form_name: 'quote', method: 'whatsapp_quote', tyre_category: val('tyre-category'), quantity: val('quantity'), branch: val('branch') }); } catch (x) {}
+        }
+        try { if (window.gtag) gtag('event', 'generate_lead', { form_name: kind, method: 'whatsapp_quote', tyre_category: val('tyre-category'), quantity: val('quantity'), branch: val('branch') }); } catch (x) {}
         try { if (window.fbq) fbq('track', 'Lead', { content_name: 'Tyre quote', content_category: val('tyre-category') }); } catch (x) {}
         setSt('Request saved. Opening WhatsApp — just press send…', 'success');
         var url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(waText());
@@ -207,11 +215,54 @@
         setSt('We could not save your request. Check your connection and try again, or call +263 716 194 485.', 'error');
       }
     });
-  }
+  });
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('[data-cta]');
     if (a && window.gtag) gtag('event', 'cta_click', { cta: a.getAttribute('data-cta') });
   });
+
+  /* Sticky quick-quote bar (desktop): appears once the visitor has scrolled past the #quote section,
+     hides while the main form or the footer is on screen, and stays closed for the visit once dismissed. */
+  var bar = document.getElementById('quote-bar'), quoteSec = document.getElementById('quote');
+  if (bar && quoteSec && 'IntersectionObserver' in window) {
+    var mq = matchMedia('(min-width:1100px)'), passed = false, quoteVis = false, footVis = false, closed = false;
+    try { closed = sessionStorage.getItem('pc_qbar_closed') === '1'; } catch (x) {}
+    bar.hidden = false;
+    function sync() {
+      var show = mq.matches && passed && !quoteVis && !footVis && !closed;
+      if (!show && bar.contains(document.activeElement)) show = mq.matches && !closed && !quoteVis;
+      bar.classList.toggle('is-on', show);
+      document.body.classList.toggle('qbar-on', show);
+      bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+      bar.inert = !show;
+    }
+    new IntersectionObserver(function (en) {
+      var r = en[0]; quoteVis = r.isIntersecting; passed = !r.isIntersecting && r.boundingClientRect.top < 0; sync();
+    }).observe(quoteSec);
+    var foot = document.querySelector('.site-footer');
+    if (foot) new IntersectionObserver(function (en) { footVis = en[0].isIntersecting; sync(); }).observe(foot);
+    bar.querySelector('.qbar__x').addEventListener('click', function () {
+      closed = true; try { sessionStorage.setItem('pc_qbar_closed', '1'); } catch (x) {} sync();
+      if (window.gtag) gtag('event', 'cta_click', { cta: 'quote_bar_close' });
+    });
+    if (mq.addEventListener) mq.addEventListener('change', sync);
+    sync();
+  }
+
+  /* Scroll reveal: same data-aos attributes and timing as the SAPC site (AOS: 650ms, ease-out-cubic, once, offset 60)
+     in ~1 KB instead of the 40 KB library. Respects reduced-motion. */
+  var aos = document.querySelectorAll('[data-aos]');
+  if (aos.length) {
+    if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var rio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('aos-animate'); rio.unobserve(en.target); } });
+      }, { rootMargin: '0px 0px -60px 0px' });
+      aos.forEach(function (el) {
+        var d = el.getAttribute('data-aos-delay'); if (d) el.style.setProperty('--aos-d', d + 'ms');
+        rio.observe(el);
+      });
+    } else { aos.forEach(function (el) { el.classList.add('aos-animate'); }); }
+  }
 
   /* Gallery lightbox: click a photo, then arrows / keys / swipe to browse */
   var gImgs = [].slice.call(document.querySelectorAll('.gallery img'));

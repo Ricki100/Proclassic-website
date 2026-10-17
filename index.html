@@ -20,7 +20,7 @@
 <link rel="icon" href="assets/images/favicon.png">
 <link rel="preload" href="assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/images/tyre-1100.webp" imagesrcset="assets/images/tyre-600.webp 600w, assets/images/tyre-1100.webp 1100w" imagesizes="(max-width:767px) 90vw, 50vw" fetchpriority="high">
-<link rel="stylesheet" href="assets/css/style.css?v=20261017k">
+<link rel="stylesheet" href="assets/css/style.css?v=20261017p">
 
 <!-- Consent Mode defaults MUST run before any Google tag -->
 <script>document.documentElement.className+=" js";</script>
@@ -70,17 +70,18 @@ addEventListener('load',function(){var go=function(){var s=document.createElemen
   <!-- TRUST STRIP -->
   <section class="trust">
     <ul class="wrap trust__list">
-      <li><span class="tick" aria-hidden="true"></span>10,000+ tyres installed</li>
-      <li><span class="tick" aria-hidden="true"></span>Serving Zimbabwe since 1996</li>
-      <li><span class="tick" aria-hidden="true"></span>Harare &amp; Mutare Branches</li>
-      <li><span class="tick" aria-hidden="true"></span>Nationwide Delivery</li>
+      <li data-aos="fade-up" data-aos-delay="0"><span class="tick" aria-hidden="true"></span>10,000+ tyres installed</li>
+      <li data-aos="fade-up" data-aos-delay="100"><span class="tick" aria-hidden="true"></span>Serving Zimbabwe since 1996</li>
+      <li data-aos="fade-up" data-aos-delay="200"><span class="tick" aria-hidden="true"></span>Harare &amp; Mutare Branches</li>
+      <li data-aos="fade-up" data-aos-delay="300"><span class="tick" aria-hidden="true"></span>Nationwide Delivery</li>
     </ul>
   </section>
 
   <!-- AVIATION -->
   <section class="aviation lazy-bg">
+    <div class="aviation__bg" aria-hidden="true"></div>
     <div class="wrap">
-      <div class="aviation__box">
+      <div class="aviation__box" data-aos="fade-right">
         <h4>INTRODUCING</h4>
         <h2 class="aviation__title">AVIATION TYRES</h2>
         <p>We are now distributing trusted, aviation-grade jet tyres engineered for safe landings, high speeds, and extreme runway conditions.</p>
@@ -92,13 +93,13 @@ addEventListener('load',function(){var go=function(){var s=document.createElemen
   <!-- CATEGORIES -->
   <section class="sizes">
     <div class="wrap">
-      <h2 class="section-title">ALL SIZES YOU CAN THINK OF</h2>
-      <p class="section-intro">Passenger and SUV tyres, truck and bus tyres, tractor and agricultural tyres, mining, OTR and earthmover tyres. Stocked in Harare and Mutare and delivered anywhere in Zimbabwe.</p>
+      <h2 class="section-title" data-aos="fade-up">ALL SIZES YOU CAN THINK OF</h2>
+      <p class="section-intro" data-aos="fade-up" data-aos-delay="100">Passenger and SUV tyres, truck and bus tyres, tractor and agricultural tyres, mining, OTR and earthmover tyres. Stocked in Harare and Mutare and delivered anywhere in Zimbabwe.</p>
       <div class="cats">
-        <a class="cat" href="/agricultural-tyres/"><span class="lazy-bg cat__img cat__img--agric" aria-hidden="true"></span><h3>Agric and Forestry Tyres</h3></a>
-        <a class="cat" href="/truck-tyres/"><span class="lazy-bg cat__img cat__img--bus" aria-hidden="true"></span><h3>Bus and Truck Tyres</h3></a>
-        <a class="cat" href="/passenger-tyres/"><span class="lazy-bg cat__img cat__img--passenger" aria-hidden="true"></span><h3>Passenger Tyres</h3></a>
-        <a class="cat" href="/mining-tyres/"><span class="lazy-bg cat__img cat__img--mining" aria-hidden="true"></span><h3>Mining Tyres</h3></a>
+        <a class="cat" href="/agricultural-tyres/" data-aos="zoom-in" data-aos-delay="0"><span class="lazy-bg cat__img cat__img--agric" aria-hidden="true"></span><h3>Agric and Forestry Tyres</h3></a>
+        <a class="cat" href="/truck-tyres/" data-aos="zoom-in" data-aos-delay="100"><span class="lazy-bg cat__img cat__img--bus" aria-hidden="true"></span><h3>Bus and Truck Tyres</h3></a>
+        <a class="cat" href="/passenger-tyres/" data-aos="zoom-in" data-aos-delay="200"><span class="lazy-bg cat__img cat__img--passenger" aria-hidden="true"></span><h3>Passenger Tyres</h3></a>
+        <a class="cat" href="/mining-tyres/" data-aos="zoom-in" data-aos-delay="300"><span class="lazy-bg cat__img cat__img--mining" aria-hidden="true"></span><h3>Mining Tyres</h3></a>
       </div>
     </div>
   </section>
@@ -106,7 +107,7 @@ addEventListener('load',function(){var go=function(){var s=document.createElemen
   <!-- QUOTE / LEAD FORM (Web3Forms -> email, then WhatsApp with the full request) -->
   <section class="quote" id="quote" aria-labelledby="quote-title">
     <div class="wrap quote__grid">
-      <div class="quote__intro">
+      <div class="quote__intro" data-aos="fade-right">
         <p class="eyebrow">Fast quote</p>
         <h2 id="quote-title">Get stock &amp; price in minutes</h2>
         <p class="quote__lead">Tell us what you need. Our sales team checks live stock at our Harare and Mutare branches and replies on WhatsApp with availability and today&rsquo;s price.</p>
@@ -123,7 +124,7 @@ addEventListener('load',function(){var go=function(){var s=document.createElemen
         </ul>
       </div>
 
-      <form class="quote__form" id="quote-form" novalidate>
+      <form class="quote__form" id="quote-form" novalidate data-lead-form="quote" data-aos="fade-left" data-aos-delay="100">
         <input type="hidden" name="access_key" value="6850bd7c-b5d3-41d8-9640-e234cdcae2fe">
         <input type="hidden" name="subject" value="New tyre quote request — Proclassic website">
         <input type="hidden" name="from_name" value="Proclassic Tyres Website">
@@ -192,14 +193,14 @@ addEventListener('load',function(){var go=function(){var s=document.createElemen
   <!-- WHAT WE OFFER -->
   <section class="offer lazy-bg">
     <div class="wrap">
-      <h2 class="section-title">What We Offer</h2>
+      <h2 class="section-title" data-aos="fade-up">What We Offer</h2>
       <div class="offer__grid">
-        <article class="card"><h4>Tyre Supply Solutions</h4><p>We supply a wide range of high-quality tyres for passenger vehicles, buses, trucks, agricultural machinery, and heavy equipment &mdash; sourced for durability, safety, and value on Zimbabwean roads.</p></article>
-        <article class="card"><h4>Professional Tyre Fitment &amp; Balancing</h4><p>Expert fitting, balancing, and pressure checks to ensure optimal performance, longer tyre life, and safer handling for every vehicle type.</p></article>
-        <article class="card"><h4>Fleet Management Support</h4><p>Tailored tyre solutions for transport operators, farms, and businesses &mdash; helping you reduce downtime, control costs, and keep your fleet road-ready.</p></article>
-        <article class="card"><h4>Agricultural &amp; Industrial Support</h4><p>Specialist support for farming, construction, mining, and industrial operations &mdash; including tyre selection for loaders, tractors, forklifts, and OTR equipment.</p></article>
-        <article class="card"><h4>Consultation &amp; Tyre Advisory</h4><p>Not sure which tyre you need? Our experts help you choose the right tyre size, type, and application based on your vehicle, load, and operating conditions.</p></article>
-        <article class="card"><h4>Wholesale &amp; Bulk Supply</h4><p>Reliable bulk supply for dealers and large operations, with competitive pricing, consistent availability, and dependable delivery support.</p></article>
+        <article class="card" data-aos="fade-up" data-aos-delay="0"><h4>Tyre Supply Solutions</h4><p>We supply a wide range of high-quality tyres for passenger vehicles, buses, trucks, agricultural machinery, and heavy equipment &mdash; sourced for durability, safety, and value on Zimbabwean roads.</p></article>
+        <article class="card" data-aos="fade-up" data-aos-delay="80"><h4>Professional Tyre Fitment &amp; Balancing</h4><p>Expert fitting, balancing, and pressure checks to ensure optimal performance, longer tyre life, and safer handling for every vehicle type.</p></article>
+        <article class="card" data-aos="fade-up" data-aos-delay="160"><h4>Fleet Management Support</h4><p>Tailored tyre solutions for transport operators, farms, and businesses &mdash; helping you reduce downtime, control costs, and keep your fleet road-ready.</p></article>
+        <article class="card" data-aos="fade-up" data-aos-delay="240"><h4>Agricultural &amp; Industrial Support</h4><p>Specialist support for farming, construction, mining, and industrial operations &mdash; including tyre selection for loaders, tractors, forklifts, and OTR equipment.</p></article>
+        <article class="card" data-aos="fade-up" data-aos-delay="320"><h4>Consultation &amp; Tyre Advisory</h4><p>Not sure which tyre you need? Our experts help you choose the right tyre size, type, and application based on your vehicle, load, and operating conditions.</p></article>
+        <article class="card" data-aos="fade-up" data-aos-delay="400"><h4>Wholesale &amp; Bulk Supply</h4><p>Reliable bulk supply for dealers and large operations, with competitive pricing, consistent availability, and dependable delivery support.</p></article>
       </div>
     </div>
   </section>
@@ -210,8 +211,8 @@ addEventListener('load',function(){var go=function(){var s=document.createElemen
   <!-- GALLERY -->
   <section class="gallery">
     <div class="wrap">
-      <h2 class="section-title">Our Gallery</h2>
-      <div class="gallery__top">
+      <h2 class="section-title" data-aos="fade-up">Our Gallery</h2>
+      <div class="gallery__top" data-aos="fade-up">
         <img class="g-big" src="assets/images/gallery-01.webp" data-full="assets/images/gallery-01-full.webp" alt="Stack of new Kapsen 255/70R15C tyres at Proclassic Tyres" width="750" height="1000" loading="lazy" decoding="async">
         <div class="g-four">
           <img src="assets/images/gallery-02.webp" data-full="assets/images/gallery-02-full.webp" alt="Truck tyres and rims loaded for delivery" width="640" height="480" loading="lazy" decoding="async">
@@ -220,7 +221,7 @@ addEventListener('load',function(){var go=function(){var s=document.createElemen
           <img src="assets/images/gallery-05.webp" data-full="assets/images/gallery-05-full.webp" alt="Large OTR and earthmover tyres in the Proclassic yard" width="640" height="360" loading="lazy" decoding="async">
         </div>
       </div>
-      <div class="gallery__bottom">
+      <div class="gallery__bottom" data-aos="fade-up">
         <div class="g-col"><img src="assets/images/gallery-06.webp" data-full="assets/images/gallery-06-full.webp" alt="Tractor tyres displayed at Proclassic Tyres Harare" width="640" height="360" loading="lazy" decoding="async"><img src="assets/images/gallery-07.webp" data-full="assets/images/gallery-07-full.webp" alt="Bulk agricultural tyres in stock" width="640" height="480" loading="lazy" decoding="async"></div>
         <div class="g-col"><img src="assets/images/gallery-08.webp" data-full="assets/images/gallery-08-full.webp" alt="Proclassic delivery truck loaded with tyres" width="640" height="360" loading="lazy" decoding="async"><img src="assets/images/gallery-09.webp" data-full="assets/images/gallery-09-full.webp" alt="Tractor tyres being loaded for a customer" width="640" height="480" loading="lazy" decoding="async"></div>
         <div class="g-col"><img src="assets/images/gallery-10.webp" data-full="assets/images/gallery-10-full.webp" alt="Proclassic Tyres delivery vehicle" width="640" height="360" loading="lazy" decoding="async"><img src="assets/images/gallery-11.webp" data-full="assets/images/gallery-11-full.webp" alt="Giant mining tyre fitted on site" width="640" height="480" loading="lazy" decoding="async"></div>
@@ -231,6 +232,27 @@ addEventListener('load',function(){var go=function(){var s=document.createElemen
 
 <div id="site-footer"></div>
 
+<form class="qbar" id="quote-bar" data-lead-form="quote_bar" novalidate aria-label="Quick tyre quote" hidden>
+  <input type="hidden" name="access_key" value="6850bd7c-b5d3-41d8-9640-e234cdcae2fe">
+  <input type="hidden" name="subject" value="New tyre quote request (quick bar) — Proclassic website">
+  <input type="hidden" name="from_name" value="Proclassic Tyres Website">
+  <input type="hidden" name="consent-recorded" value="">
+  <input type="hidden" name="page" value="">
+  <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <p class="qbar__title"><strong>Get stock &amp; price</strong><span>Reply on WhatsApp</span></p>
+  <label class="qbar__f"><span class="sr">Tyre type</span>
+    <select name="tyre-category" required>
+      <option value="">Tyre type…</option><option>Passenger / SUV</option><option>Truck &amp; Bus</option><option>Agricultural / Tractor</option><option>Mining / OTR</option><option>Engineering / Industrial</option><option>Aviation</option>
+    </select></label>
+  <label class="qbar__f"><span class="sr">Tyre size</span><input type="text" name="tyre-size" placeholder="Tyre size (optional)" autocomplete="off"></label>
+  <label class="qbar__f"><span class="sr">Your name</span><input type="text" name="name" placeholder="Your name" required autocomplete="name"></label>
+  <label class="qbar__f"><span class="sr">WhatsApp number</span><input type="tel" name="phone" placeholder="+263 77 000 0000" required inputmode="tel" autocomplete="tel" data-phone></label>
+  <label class="qbar__consent"><input type="checkbox" name="data-consent" required><span>OK to contact me about this quote (<a href="/privacy-policy/">privacy</a>)</span></label>
+  <button type="submit" class="btn" data-submit-button><span class="wa-ico" aria-hidden="true"></span>Get price</button>
+  <button type="button" class="qbar__x" aria-label="Hide quick quote">&times;</button>
+  <p class="form-status qbar__status" data-form-status role="status" aria-live="polite"></p>
+</form>
+
 <a class="wa-float" href="https://wa.me/263716194485?text=Hi%20Proclassic%2C%20I%E2%80%99d%20like%20a%20tyre%20quote." target="_blank" rel="noopener" aria-label="Chat with Proclassic Tyres on WhatsApp" data-cta="float_whatsapp"><span class="wa-ico" aria-hidden="true"></span></a>
 <nav class="mbar" aria-label="Quick contact">
   <a href="tel:+263716194485" data-cta="mbar_call">Call</a>
@@ -238,6 +260,6 @@ addEventListener('load',function(){var go=function(){var s=document.createElemen
   <a href="#quote" class="mbar__quote" data-cta="mbar_quote">Get a Quote</a>
 </nav>
 
-<script src="assets/js/site.js?v=20261017k" defer></script>
+<script src="assets/js/site.js?v=20261017p" defer></script>
 </body>
 </html>
