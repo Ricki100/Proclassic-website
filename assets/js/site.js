@@ -87,6 +87,28 @@
   function inject(id, html) { var el = document.getElementById(id); if (el) el.outerHTML = html; }
   inject('site-header', header);
   inject('site-footer', footer);
+  /* Sticky quick-quote bar: injected on every page (desktop) */
+  var qbarHtml = '<form class="qbar" id="quote-bar" data-lead-form="quote_bar" novalidate aria-label="Quick tyre quote">' +
+    '  <input type="hidden" name="access_key" value="6850bd7c-b5d3-41d8-9640-e234cdcae2fe">' +
+    '  <input type="hidden" name="subject" value="New tyre quote request (quick bar) — Proclassic website">' +
+    '  <input type="hidden" name="from_name" value="Proclassic Tyres Website">' +
+    '  <input type="hidden" name="consent-recorded" value="">' +
+    '  <input type="hidden" name="page" value="">' +
+    '  <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+    '  <p class="qbar__title"><strong>Get stock &amp; price</strong><span>Reply on WhatsApp</span></p>' +
+    '  <label class="qbar__f"><span class="sr">Tyre type</span>' +
+    '    <select name="tyre-category" required>' +
+    '      <option value="">Tyre type…</option><option>Passenger / SUV</option><option>Truck &amp; Bus</option><option>Agricultural / Tractor</option><option>Mining / OTR</option><option>Engineering / Industrial</option><option>Aviation</option>' +
+    '    </select></label>' +
+    '  <label class="qbar__f"><span class="sr">Tyre size</span><input type="text" name="tyre-size" placeholder="Tyre size (optional)" autocomplete="off"></label>' +
+    '  <label class="qbar__f"><span class="sr">Your name</span><input type="text" name="name" placeholder="Your name" required autocomplete="name"></label>' +
+    '  <label class="qbar__f"><span class="sr">WhatsApp number</span><input type="tel" name="phone" placeholder="+263 77 000 0000" required inputmode="tel" autocomplete="tel" data-phone></label>' +
+    '  <label class="qbar__consent"><input type="checkbox" name="data-consent" required><span>OK to contact me about this quote (<a href="/privacy-policy/">privacy</a>)</span></label>' +
+    '  <button type="submit" class="btn" data-submit-button><span class="wa-ico" aria-hidden="true"></span>Get price</button>' +
+    '  <button type="button" class="qbar__x" aria-label="Hide quick quote">&times;</button>' +
+    '  <p class="form-status qbar__status" data-form-status role="status" aria-live="polite"></p>' +
+    '</form>';
+  if (!document.getElementById('quote-bar')) document.body.insertAdjacentHTML('beforeend', qbarHtml);
   document.body.insertAdjacentHTML('beforeend', cookie);
 
   /* Lazy background images: add .is-visible shortly before a section scrolls into view */
@@ -221,32 +243,25 @@
     if (a && window.gtag) gtag('event', 'cta_click', { cta: a.getAttribute('data-cta') });
   });
 
-  /* Sticky quick-quote bar (desktop): appears once the visitor has scrolled past the #quote section,
-     hides while the main form or the footer is on screen, and stays closed for the visit once dismissed. */
-  var bar = document.getElementById('quote-bar'), quoteSec = document.getElementById('quote');
-  if (bar && quoteSec && 'IntersectionObserver' in window) {
-    var mq = matchMedia('(min-width:1100px)'), passed = false, quoteVis = false, footVis = false, closed = false;
+  /* Sticky quick-quote bar (desktop, >=1100px): always visible from hero to footer on every page.
+     The x hides it for the rest of the visit. */
+  var bar = document.getElementById('quote-bar');
+  if (bar) {
+    var mq = matchMedia('(min-width:1100px)'), closed = false;
     try { closed = sessionStorage.getItem('pc_qbar_closed') === '1'; } catch (x) {}
-    bar.hidden = false;
     function sync() {
-      var show = mq.matches && passed && !quoteVis && !footVis && !closed;
-      if (!show && bar.contains(document.activeElement)) show = mq.matches && !closed && !quoteVis;
+      var show = mq.matches && !closed;
       bar.classList.toggle('is-on', show);
       document.body.classList.toggle('qbar-on', show);
       bar.setAttribute('aria-hidden', show ? 'false' : 'true');
       bar.inert = !show;
     }
-    new IntersectionObserver(function (en) {
-      var r = en[0]; quoteVis = r.isIntersecting; passed = !r.isIntersecting && r.boundingClientRect.top < 0; sync();
-    }).observe(quoteSec);
-    var foot = document.querySelector('.site-footer');
-    if (foot) new IntersectionObserver(function (en) { footVis = en[0].isIntersecting; sync(); }).observe(foot);
     bar.querySelector('.qbar__x').addEventListener('click', function () {
       closed = true; try { sessionStorage.setItem('pc_qbar_closed', '1'); } catch (x) {} sync();
       if (window.gtag) gtag('event', 'cta_click', { cta: 'quote_bar_close' });
     });
     if (mq.addEventListener) mq.addEventListener('change', sync);
-    sync();
+    requestAnimationFrame(function () { setTimeout(sync, 600); });
   }
 
   /* Scroll reveal: same data-aos attributes and timing as the SAPC site (AOS: 650ms, ease-out-cubic, once, offset 60)

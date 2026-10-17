@@ -127,7 +127,7 @@ h1,h2,h3,h4{margin:0 0 .5em;line-height:1.15;font-weight:800}
 .footer__socials a{width:36px;height:36px;border-radius:50%;background:#1c1c1c;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px}
 .footer__socials a:hover{background:var(--red)}
 .branch strong{color:#fff;display:block}
-.footer__bottom{border-top:1px solid #1f1f1f;margin-top:48px;padding:20px 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px}
+.footer__bottom{border-top:1px solid #1f1f1f;margin-top:48px;padding:20px var(--gutter);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px}
 .footer__bottom nav{display:flex;gap:18px}
 
 /* COOKIE BANNER */
@@ -239,6 +239,7 @@ main{overflow-x:clip}
 .qbar__status{flex-basis:100%;margin:0;font-size:13px}
 .qbar__status:empty{display:none}
 body.qbar-on .wa-float{opacity:0;pointer-events:none}
+body.qbar-on{padding-bottom:96px}
 .wa-float{transition:transform .2s,opacity .3s}
 @media (max-width:1099px){.qbar{display:none!important}}
 @media (prefers-reduced-motion:reduce){.js [data-aos]{opacity:1!important;transform:none!important}.aviation__bg{position:absolute}}
