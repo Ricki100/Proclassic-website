@@ -259,8 +259,6 @@ body.qbar-on{padding-bottom:96px}
 .phero__sub{font-size:clamp(16px,1.35vw,20px);color:#e2e2e2;margin:0 0 30px;max-width:600px}
 .phero__chips{list-style:none;padding:0;margin:28px 0 0;display:flex;flex-wrap:wrap;gap:8px}
 .phero__chips li{border:1px solid rgba(255,255,255,.28);background:rgba(0,0,0,.35);backdrop-filter:blur(4px);border-radius:999px;padding:7px 14px;font-size:13px;color:#eee}
-.phero__badge{flex:none;background:var(--red);color:#fff;border-radius:10px;padding:16px 20px;display:grid;box-shadow:0 14px 30px rgba(0,0,0,.45);margin-bottom:6px}
-.phero__badge strong{font-size:22px;line-height:1.1}.phero__badge span{font-size:13px;opacity:.92}
 .phero__cue{position:absolute;left:50%;bottom:26px;z-index:1;transform:translateX(-50%);display:grid;justify-items:center;gap:8px;color:#ddd;text-decoration:none;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
 .phero__cue i{width:22px;height:36px;border:2px solid rgba(255,255,255,.6);border-radius:12px;position:relative}
 .phero__cue i::after{content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:cue 1.6s ease-in-out infinite}
@@ -384,7 +382,6 @@ body.lb-lock{overflow:hidden}
   .phero__bg{background-image:url(../images/agric-hero-1200.webp);background-position:22% center}
   .phero::after{background:linear-gradient(0deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.7) 45%,rgba(0,0,0,.25) 100%)}
   .phero__inner{flex-direction:column;align-items:flex-start}
-  .phero__badge{display:none}
   .phero__cue{display:none}
   .phero .hero__ctas .btn{flex:1 1 100%;text-align:center}
   .sizes-grid{grid-template-columns:1fr 1fr;gap:10px}
