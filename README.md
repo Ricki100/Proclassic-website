@@ -35,8 +35,8 @@ Category links like `/mining-tyres/` use root paths, so they only resolve on a s
 
 - Quote form `#quote` on the homepage: tyre type, size, quantity, vehicle, name, WhatsApp number, branch, consent.
 - On submit (code in `assets/js/site.js`):
-  1. POST to Web3Forms → emailed to sales (set the real key in the `access_key` hidden input in `index.html`;
-     while it says `YOUR_WEB3FORMS_ACCESS_KEY` the form skips this step).
+  1. POST to Web3Forms → emailed to the inbox linked to the access key (hidden `access_key` input in `index.html`;
+     the key is public by design).
   2. `generate_lead` to GA4 (+ Meta `Lead` if the pixel is on the page).
   3. Opens WhatsApp (+263 716 194 485) with the full request pre-typed.
 - Floating WhatsApp button on desktop, Call / WhatsApp / Get a Quote bar on mobile.
