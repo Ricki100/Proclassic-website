@@ -17,8 +17,9 @@
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="../assets/images/favicon.png">
 <link rel="preload" href="../assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="../assets/images/agric-hero-1200.webp" imagesrcset="../assets/images/agric-hero-700.webp 700w, ../assets/images/agric-hero-1200.webp 1200w" imagesizes="(max-width:767px) 100vw, 55vw" fetchpriority="high">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261017t">
+<link rel="preload" as="image" href="../assets/images/agric-hero-1920.webp" media="(min-width:1201px)" fetchpriority="high">
+<link rel="preload" as="image" href="../assets/images/agric-hero-1200.webp" media="(max-width:1200px)" fetchpriority="high">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261017v">
 
 <!-- Consent Mode defaults MUST run before any Google tag -->
 <script>document.documentElement.className+=" js";</script>
@@ -44,9 +45,10 @@ addEventListener('load',function(){var go=function(){var s=document.createElemen
 <div id="site-header"></div>
 
 <main>
-  <!-- HERO -->
+  <!-- HERO (full screen, pinned parallax photo) -->
   <section class="phero">
-    <div class="wrap phero__grid">
+    <div class="phero__bg" aria-hidden="true"></div>
+    <div class="wrap phero__inner">
       <div class="phero__copy">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Agricultural Tyres</span></nav>
         <h1>Tractor &amp; Agricultural Tyres in Zimbabwe</h1>
@@ -59,14 +61,9 @@ addEventListener('load',function(){var go=function(){var s=document.createElemen
           <li>Radial &amp; cross-ply</li><li>Galaxy agricultural range</li><li>Farm &amp; estate bulk supply</li>
         </ul>
       </div>
-      <div class="phero__media">
-        <picture>
-          <source type="image/webp" srcset="../assets/images/agric-hero-700.webp 700w, ../assets/images/agric-hero-1200.webp 1200w" sizes="(max-width:767px) 100vw, 55vw">
-          <img src="../assets/images/agric-hero-1200.webp" alt="Large rear tractor tyre with deep lugs on a farm road in Zimbabwe" width="1200" height="801" fetchpriority="high" decoding="async">
-        </picture>
-        <div class="phero__badge"><strong>Since 1996</strong><span>Keeping Zimbabwe&rsquo;s farms moving</span></div>
-      </div>
+      <div class="phero__badge"><strong>Since 1996</strong><span>Keeping Zimbabwe&rsquo;s farms moving</span></div>
     </div>
+    <a class="phero__cue" href="#sizes" data-cta="agric_hero_scroll"><span>Find your size</span><i aria-hidden="true"></i></a>
   </section>
 
   <!-- TRUST -->
@@ -333,6 +330,6 @@ addEventListener('load',function(){var go=function(){var s=document.createElemen
   <a href="#quote" class="mbar__quote" data-cta="mbar_quote">Get a Quote</a>
 </nav>
 
-<script src="../assets/js/site.js?v=20261017t" defer></script>
+<script src="../assets/js/site.js?v=20261017v" defer></script>
 </body>
 </html>
