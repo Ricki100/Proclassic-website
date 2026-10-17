@@ -67,3 +67,11 @@ and fix relative asset paths (`../assets/...`). Keep every existing WordPress UR
 
 Keyword map lives in the Proclassic project (`claude/proclassic-keyword-map.md`).
 Homepage targets: "tyres zimbabwe", "tyres for sale in harare", "tyres harare". Schema type: TireShop.
+
+## Deploying (GitHub Pages)
+
+Every push to `main` runs `.github/workflows/pages.yml` and publishes this folder.
+One-time setup: GitHub repo → **Settings → Pages → Build and deployment → GitHub Actions**.
+`CNAME` holds `proclassicgroup.com`; the live domain only switches when DNS points to GitHub
+(A records 185.199.108.153 / .109 / .110 / .111 for `@`, CNAME `www` → `ricki100.github.io`;
+keep the MX/SPF/DKIM/DMARC email records).
