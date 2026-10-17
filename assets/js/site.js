@@ -171,6 +171,12 @@
       if (r) r.checked = true;
     });
   });
+  /* Size cards: clicking fills the size (and category) into the quote form */
+  document.querySelectorAll('[data-quote-size]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var f = qf && qf.querySelector('[name="tyre-size"]'); if (f) f.value = a.getAttribute('data-quote-size');
+    });
+  });
   /* Links from other pages (e.g. the 404 page) can pre-select a tyre type on the homepage form */
   document.querySelectorAll('[data-quote-link]').forEach(function (a) {
     a.addEventListener('click', function () { try { sessionStorage.setItem('pc_quote_cat', a.getAttribute('data-quote-link')); } catch (x) {} });
@@ -247,6 +253,8 @@
      The x hides it for the rest of the visit. */
   var bar = document.getElementById('quote-bar');
   if (bar) {
+    var def = document.body.getAttribute('data-quote-default'), bsel = bar.querySelector('[name="tyre-category"]');
+    if (def && bsel) bsel.value = def;
     var mq = matchMedia('(min-width:1100px)'), closed = false;
     try { closed = sessionStorage.getItem('pc_qbar_closed') === '1'; } catch (x) {}
     function sync() {
