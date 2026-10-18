@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cookie Policy | Proclassic Tyres Zimbabwe</title>
+<meta name="robots" content="index, follow">
+<meta name="description" content="The cookies proclassicgroup.com uses, what they do and how to change your choice.">
+<link rel="canonical" href="https://proclassicgroup.com/cookie-policy/">
+<link rel="icon" href="/assets/images/favicon.png">
+<link rel="preload" href="/assets/fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css?v=20261018a">
+<script>document.documentElement.className+=" js";</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+try{ if(localStorage.getItem('pc_consent_status')==='granted'){ gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'}); } }catch(e){}
+gtag('js', new Date()); gtag('config','G-01BDQ5DF87',{page_title:'Cookie Policy'});
+addEventListener('load',function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-01BDQ5DF87';document.head.appendChild(s);});
+</script>
+<style>
+.legal{padding:70px 0 100px}
+.legal .wrap{max-width:820px}
+.legal h1{font-size:clamp(32px,4vw,52px);margin-bottom:10px}
+.legal .updated{color:var(--muted);margin-bottom:36px}
+.legal h2{font-size:24px;margin:40px 0 12px}
+.legal p,.legal li{color:#d6d6d6;font-size:17px;line-height:1.65}
+.legal ul{padding-left:22px;margin:0 0 16px}
+.legal li{margin-bottom:6px}
+.legal a{color:#fff}
+.legal table{width:100%;border-collapse:collapse;margin:12px 0 24px;font-size:15px}
+.legal th,.legal td{border:1px solid #2a2a2a;padding:10px;text-align:left;vertical-align:top;color:#d6d6d6}
+.legal th{color:#fff;background:#111}
+.legal .todo{background:#3a2a00;color:#ffd27a;padding:0 4px;border-radius:3px}
+@media (max-width:767px){.legal table{font-size:13px}.legal th,.legal td{padding:7px}}
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+<main class="legal">
+  <div class="wrap">
+    <p class="eyebrow">Privacy</p>
+    <h1>Cookie Policy</h1>
+    <p class="updated">Effective 18 October 2026</p>
+
+    <p>Cookies are small files a website stores in your browser. This page lists what proclassicgroup.com stores and lets you change your choice. For how we use personal information in general, see our <a href="/privacy-policy/">Privacy Policy</a>.</p>
+
+    <h2>Your choice</h2>
+    <p>When you first visit, a banner asks whether you accept analytics cookies. Google Analytics cookies are only set after you click <em>Accept</em>. If you click <em>Decline</em>, they are not set, and Google may only receive basic signals that a page was viewed, without cookies.</p>
+    <p><button type="button" class="btn btn--sm" id="pc-cookie-reset">Change my cookie choice</button> <span id="pc-cookie-now" style="margin-left:10px;color:var(--muted)"></span></p>
+
+    <h2>What we store</h2>
+    <table>
+      <thead><tr><th>Name</th><th>Provider</th><th>Purpose</th><th>Kept for</th><th>Needs consent?</th></tr></thead>
+      <tbody>
+        <tr><td>pc_consent_status (browser storage)</td><td>Proclassic (this site)</td><td>Remembers whether you accepted or declined cookies</td><td>Until you clear it</td><td>No (needed to respect your choice)</td></tr>
+        <tr><td>pc_quote_cat, pc_qbar_closed (session storage)</td><td>Proclassic (this site)</td><td>Remembers the tyre type you picked and whether you closed the quote bar</td><td>Until you close the tab</td><td>No (needed for the site to work)</td></tr>
+        <tr><td>_ga</td><td>Google Analytics</td><td>Tells visits from the same browser apart, to count visitors</td><td>Up to 2 years</td><td>Yes</td></tr>
+        <tr><td>_ga_01BDQ5DF87</td><td>Google Analytics</td><td>Keeps track of the current visit</td><td>Up to 2 years</td><td>Yes</td></tr>
+      </tbody>
+    </table>
+    <p>Google Analytics is loaded through Google Tag Manager. We don&rsquo;t use advertising or social-media tracking cookies on this website. Links to WhatsApp, Facebook, X and LinkedIn open those services, which have their own cookie policies.</p>
+
+    <h2>Other ways to control cookies</h2>
+    <p>You can also block or delete cookies in your browser settings. The site still works if you do, but you may see the cookie banner again.</p>
+
+    <h2>Contact</h2>
+    <p>Questions: <a href="mailto:info@proclassicgroup.com">info@proclassicgroup.com</a> or WhatsApp <a href="https://wa.me/263716194485" target="_blank" rel="noopener">+263 716 194 485</a>.</p>
+  </div>
+</main>
+<script>
+(function(){
+  var now=document.getElementById('pc-cookie-now'), s=null;
+  try{ s=localStorage.getItem('pc_consent_status'); }catch(e){}
+  if(now) now.textContent = s==='granted' ? 'Current choice: accepted' : s==='denied' ? 'Current choice: declined' : 'Current choice: not made yet';
+  var b=document.getElementById('pc-cookie-reset');
+  if(b) b.addEventListener('click',function(){
+    try{ localStorage.removeItem('pc_consent_status'); }catch(e){}
+    if(window.gtag) gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+    document.cookie.split(';').forEach(function(c){ var n=c.split('=')[0].trim(); if(/^_ga/.test(n)){ ['', '; domain=.proclassicgroup.com', '; domain=proclassicgroup.com'].forEach(function(d){ document.cookie=n+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'+d; }); } });
+    location.reload();
+  });
+})();
+</script>
+<div id="site-footer"></div>
+<script src="/assets/js/site.js?v=20261018c" defer></script>
+</body>
+</html>

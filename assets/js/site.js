@@ -80,7 +80,7 @@
 
   var cookie =
     '<div id="pc-cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">' +
-      '<p>We use cookies and similar technologies (including Google Analytics, Google Ads, and Google Tag Manager) to understand site traffic. These only load if you click Accept. See our <a href="/privacy-policy/">Privacy Policy</a>.</p>' +
+      '<p>We use Google Analytics cookies (loaded through Google Tag Manager) to understand how the site is used. They are only set if you click Accept. See our <a href="/cookie-policy/">Cookie Policy</a> and <a href="/privacy-policy/">Privacy Policy</a>.</p>' +
       '<div class="btns"><button type="button" class="decline">Decline</button><button type="button" class="accept">Accept</button></div>' +
     '</div>';
 
@@ -247,16 +247,6 @@
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('[data-cta]');
     if (a && window.gtag) gtag('event', 'cta_click', { cta: a.getAttribute('data-cta') });
-  });
-  /* Key events in GA4: whatsapp_click, phone_click, email_click (matched by link address, so links without data-cta count too) */
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href]');
-    if (!a || !window.gtag) return;
-    var h = a.getAttribute('href') || '';
-    var ev = /wa\.me|whatsapp/i.test(h) ? 'whatsapp_click'
-           : /^tel:/i.test(h) ? 'phone_click'
-           : /^mailto:/i.test(h) ? 'email_click' : null;
-    if (ev) gtag('event', ev, { link_url: h, cta: a.getAttribute('data-cta') || '' });
   });
 
   /* Sticky quick-quote bar (desktop, >=1100px): always visible from hero to footer on every page.
