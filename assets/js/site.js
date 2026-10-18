@@ -248,6 +248,16 @@
     var a = e.target.closest && e.target.closest('[data-cta]');
     if (a && window.gtag) gtag('event', 'cta_click', { cta: a.getAttribute('data-cta') });
   });
+  /* Key events in GA4: whatsapp_click, phone_click, email_click (matched by link address, so links without data-cta count too) */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || !window.gtag) return;
+    var h = a.getAttribute('href') || '';
+    var ev = /wa\.me|whatsapp/i.test(h) ? 'whatsapp_click'
+           : /^tel:/i.test(h) ? 'phone_click'
+           : /^mailto:/i.test(h) ? 'email_click' : null;
+    if (ev) gtag('event', ev, { link_url: h, cta: a.getAttribute('data-cta') || '' });
+  });
 
   /* Sticky quick-quote bar (desktop, >=1100px): always visible from hero to footer on every page.
      The x hides it for the rest of the visit. */
