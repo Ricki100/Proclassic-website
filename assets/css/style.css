@@ -408,3 +408,13 @@ body.lb-lock{overflow:hidden}
   #quote{scroll-margin-top:72px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* Location pages: visit block + type links */
+.type__link{display:block;width:fit-content;margin-top:10px;color:var(--red);font-weight:700;text-decoration:none;white-space:nowrap}
+.type__link:hover{text-decoration:underline}
+.visit{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.visit__rows{list-style:none;margin:0 0 28px;padding:0;border-top:1px solid #222}
+.visit__rows li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #222}
+.visit__rows span{color:var(--muted);font-size:14px;text-transform:uppercase;letter-spacing:.06em}
+.visit__rows strong{font-weight:600}
+.visit__media img{width:100%;height:auto;border-radius:14px;aspect-ratio:3/2;object-fit:cover}
+@media (max-width:900px){.visit{grid-template-columns:1fr}.visit__rows li{grid-template-columns:1fr;gap:2px}}
