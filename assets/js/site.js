@@ -63,6 +63,7 @@
           '<li><a href="/">Home</a></li>' +
           '<li><a href="/branch-locator/">Branch locator</a></li>' +
           '<li><a href="/proclassic-tyres-harare-reliable-tyres-and-expert-services/">Tyres in Harare</a></li>' +
+          '<li><a href="/tyre-guides/">Tyre guides</a></li>' +
           '<li><a href="/#quote" data-cta="footer_quote">Request a quote</a></li>' +
         '</ul></div>' +
         '<div><h5>BRANCHES</h5><ul>' +
